@@ -8,6 +8,8 @@ public class FPSGameTarget : TargetRules
 	public FPSGameTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		ExtraModuleNames.Add("FPSGame");
+		DefaultBuildSettings = BuildSettingsVersion.V2;
+		ExtraModuleNames.AddRange(new string[] {"FPSGame"});
+
 	}
 }
