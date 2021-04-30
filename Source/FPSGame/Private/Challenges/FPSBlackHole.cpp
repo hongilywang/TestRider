@@ -56,5 +56,6 @@ void AFPSBlackHole::Tick(float DeltaTime)
 		UPrimitiveComponent* PrimComp = OverlappingComps[i];
 		PrimComp->AddRadialForce(GetActorLocation(), SphereRadius, ForceStrength, ERadialImpulseFalloff::RIF_Constant, true);
 	}
+	
 }
 
