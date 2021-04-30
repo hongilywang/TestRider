@@ -20,8 +20,6 @@ AFPSBlackHole::AFPSBlackHole()
 	MeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	InnerSphereComponent->SetSphereRadius(100);
-	InnerSphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AFPSBlackHole::OverlapInnerSphere);
-	
 	OuterSphereComponent->SetSphereRadius(3000);
 	
 }
@@ -38,7 +36,7 @@ void AFPSBlackHole::OverlapInnerSphere(UPrimitiveComponent* OverlappedComponent,
 void AFPSBlackHole::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	InnerSphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AFPSBlackHole::OverlapInnerSphere);
 }
 
 // Called every frame
