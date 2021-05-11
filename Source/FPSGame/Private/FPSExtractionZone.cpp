@@ -1,6 +1,7 @@
 #include "FPSExtractionZone.h"
 
 #include "FPSCharacter.h"
+#include "Components/DecalComponent.h"
 
 AFPSExtractionZone::AFPSExtractionZone()
 {
@@ -11,7 +12,10 @@ AFPSExtractionZone::AFPSExtractionZone()
 	OverlapComponent->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 	OverlapComponent->SetBoxExtent(FVector(200));
 	OverlapComponent->OnComponentBeginOverlap.AddDynamic(this, &AFPSExtractionZone::HandleOverlap);
-	OverlapComponent->SetHiddenInGame(false);
+
+	DecalComponent = CreateDefaultSubobject<UDecalComponent>(TEXT("DecalComponent"));
+	DecalComponent->DecalSize = FVector(200);
+	DecalComponent->SetupAttachment(RootComponent);
 }
 
 void AFPSExtractionZone::HandleOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
